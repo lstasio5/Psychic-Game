@@ -29,6 +29,13 @@ compChoice();
 // console log result (it worked!)
 console.log(compChoice(computerArray));
 
-// Create a function to get the counts
+// Set starting Counts
+
+var wins = 0
+var losses= 0
+var guessesLeft = 9
+var guessesSoFar = ""
+
+
 
 // Call the function to get the counts after each user try
