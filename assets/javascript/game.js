@@ -15,7 +15,20 @@
 // display user guess, decreases Guesses left, keep checking user key value until user guess equals
 // computer guess or until Guesses left is less than 1
 
-var computerArray = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, g, r, s, t, u, v, w, x, y, z];
 
-var compChoice = 
+var computerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "g", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+// store computer choice in a variable.  Create a function that sets the computer choice. 
+var compChoice = function() {
+  return computerArray[Math.floor(Math.random()*computerArray.length)];
+}
+
+// call function
+compChoice();
+
+// console log result (it worked!)
+console.log(compChoice(computerArray));
+
+// Create a function to get the counts
+
+// Call the function to get the counts after each user try
