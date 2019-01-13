@@ -18,24 +18,74 @@
 
 var computerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "g", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-// store computer choice in a variable.  Create a function that sets the computer choice. 
+// Store computer choice in a variable.  Create a function that sets the computer choice. 
 var compChoice = function() {
   return computerArray[Math.floor(Math.random()*computerArray.length)];
 }
 
-// call function
+// call function to set a computer Choice
 compChoice();
 
 // console log result (it worked!)
 console.log(compChoice(computerArray));
 
-// Set starting Counts
+// Starting Score
 
-var wins = 0
-var losses= 0
-var guessesLeft = 9
-var guessesSoFar = ""
+var wins = 0;
+var losses= 0;
+var guessesLeft = 9;
+var userGuesses = [];
+
+// Functions:
+
+//Update guesses left
+
+var updateGuessesLeft= function() {
+  document.querySelector("#guesses-left").innerHTML= "Guesses Left:" + guessesLeft;
+}
+
+//Function to display wins
+
+var updateWins= function() {
+    document.querySelector('#wins').innerHTML = "Wins: " + wins;
+}
+
+// Display user guesses so far
+
+var guessesSoFar = function() {
+  document.querySelector("#guesses-sofar").innerHTML= "Your Guesses so far:" + userGuesses.join(', ');
+
+}
+
+// Function to run when users selects a letter 
+
+    document.onkeyup = function(event) {
+       
+
+    // Take users guess, covert to lowercase and store in variable  
+      var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+      console.log(event.key)
+      console.log(userGuess);
+
+      userGuesses.push(userGuess);
+      updateGuessesLeft()
+      guessesSoFar();
+
+      console.log(userGuesses);
+  
+
+  // Logic to determine which functions to run 
+
+      
+        if (userGuess === compChoice) {
+        wins++;
+        updateWins();
+        }
+
+        else if (userGuess != compChoice){
+        guessesLeft--;
+    }
+  }
 
 
-
-// Call the function to get the counts after each user try
