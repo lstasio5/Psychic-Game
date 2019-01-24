@@ -64,44 +64,38 @@ var guessesSoFar = function() {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
     userGuesses.push(userGuess);
+
+    console.log(userGuess)
     
+    if (userGuess == compChoice) {
+        wins++;
+        guessesLeft = 9;
+        guessesSoFar();
+        
+      }
 
-    console.log(userGuesses);
-
-// Function to run when users selects a letter 
-    
-document.onkeyup = function(event) {
-    
-  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-  userGuesses.push(userGuess);
-
-  console.log(userGuess)
-  
-  if (userGuess == compChoice) {
-      wins++;
-      guessesLeft = 9;
-      guessesSoFar();
-      
+    else if (guessesLeft == 0) {
+      losses++;
+      guessesLeft= 9;
     }
 
-  else if (guessesLeft == 0) {
-    losses++;
-    guessesLeft= 9;
-  }
+    else if (userGuess !== compChoice){
+      guessesLeft--; 
+  }  
+  
 
-  else if (userGuess !== compChoice){
-    guessesLeft--; 
-}  
+  // Logic to determine which functions to run 
 
-
-
+     //if (guessesLeft <1) {     
+     //   if (userGuess === compChoice) {
+     //   wins++;
+     //   updateWins();
+     //   }
 
       }
-    }
-  
 
-  // Logic to determine which functions to run
+     //   else if (userGuess != compChoice){
+     //   guessesLeft--;
     
 
 
