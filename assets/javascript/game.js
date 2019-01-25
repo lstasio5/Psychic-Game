@@ -17,92 +17,87 @@
 
 
 var computerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "g", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
+var globalGuess;
 // Store computer choice in a variable.  Create a function that sets the computer choice. 
-var compChoice = function() {
-  return computerArray[Math.floor(Math.random()*computerArray.length)];
+var compChoice = function () {
+   globalGuess = computerArray[Math.floor(Math.random() * computerArray.length)];
 }
 
-// call function to set a computer Choice
 compChoice();
 
-// console log result (it worked!)
-console.log(compChoice(computerArray));
+// console log result 
+console.log("computerchoice", compChoice());
+
 
 // Starting Score
 
 var wins = 0;
-var losses= 0;
+var losses = 0;
 var guessesLeft = 9;
 var userGuesses = [];
 
 // Functions:
 
-//Update guesses left
-
-var updateGuessesLeft= function() {
-  document.querySelector("#guesses-left").innerHTML= "Guesses Left:" + guessesLeft;
-}
-
-//Function to display wins
-
-var updateWins= function() {
-    document.querySelector('#wins').innerHTML = "Wins: " + wins;
-}
-
-// Display user guesses so far
-
-var guessesSoFar = function() {
-  document.querySelector("#guesses-sofar").innerHTML= "Your Guesses so far:" + userGuesses.join(', ');
-
-}
 
 // Function to run when users selects a letter 
-    
-    document.onkeyup = function(event) {
-    
-    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-    userGuesses.push(userGuess);
-    
+document.onkeyup = function (event) {
 
-    console.log(userGuesses);
-
-// Function to run when users selects a letter 
-    
-document.onkeyup = function(event) {
-    
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
   userGuesses.push(userGuess);
 
-  console.log(userGuess)
-  
-  if (userGuess == compChoice) {
-      wins++;
-      guessesLeft = 9;
-      guessesSoFar();
-      
-    }
+  console.log("userguesses",userGuess);
+  console.log("globalGuess",globalGuess);
+
+  if (userGuess === globalGuess) {
+    wins++;
+    console.log("wins",wins);
+    guessesLeft = 9;
+    guessesSoFar();
+    updateGuessesLeft();
+    updateWins();
+    //reset();
+    
+  }
+  else if (userGuess !== globalGuess) {
+    guessesLeft--;
+    guessesSoFar();
+  }
 
   else if (guessesLeft == 0) {
     losses++;
-    guessesLeft= 9;
+    guessesLeft = 9;
   }
 
-  else if (userGuess !== compChoice){
-    guessesLeft--; 
-}  
 
+}
 
+var updateGuessesLeft = function () {
+  document.querySelector("#guesses-left").innerHTML = "Guesses Left:" + guessesLeft;
+}
 
+//Function to display wins
 
-      }
-    }
-  
+var updateWins = function () {
+  document.querySelector("#wins").innerHTML = "Wins: " + wins;
+}
 
-  // Logic to determine which functions to run
-    
+// Display user guesses so far
+
+var guessesSoFar = function () {
+  document.querySelector("#guesses-sofar").innerHTML = "Your Guesses so far:" + userGuesses.join(', ');
+
+}
+
+function reset()  {
+  wins= 0
+  losses= 0
+  guessesLeft = 9
+  userGuesses = [];
+  compChoice();
+  updateWins();
+}
 
 
 
