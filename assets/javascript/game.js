@@ -18,7 +18,7 @@
 
 var computerArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "g", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var globalGuess;
-// Store computer choice in a variable.  Create a function that sets the computer choice. 
+// Had to create another variable "global guess" because everytime I clicked it was resetting the compChoice
 var compChoice = function () {
    globalGuess = computerArray[Math.floor(Math.random() * computerArray.length)];
 }
@@ -29,7 +29,7 @@ compChoice();
 console.log("computerchoice", compChoice());
 
 
-// Starting Score
+// Starting Values
 
 var wins = 0;
 var losses = 0;
@@ -41,7 +41,7 @@ var userGuesses = [];
 
 // Function to run when users selects a letter 
 
-document.onkeyup = function (event) {
+  document.onkeyup = function (event) {
 
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
@@ -89,6 +89,8 @@ var guessesSoFar = function () {
   document.querySelector("#guesses-sofar").innerHTML = "Your Guesses so far:" + userGuesses.join(', ');
 
 }
+
+//Reset Function
 
 function reset()  {
   wins= 0
