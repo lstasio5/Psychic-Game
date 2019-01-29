@@ -56,9 +56,8 @@ var userGuesses = [];
     wins++;
     console.log("wins",wins);
     guessesSoFar();
-    updateGuessesLeft();
     updateWins();
-    //reset();
+    reset();
     
   }
 
@@ -73,6 +72,7 @@ var userGuesses = [];
   console.log("condition three",guessesLeft == 0);
   if (guessesLeft == 0) {
     losses++;
+    updateLosses();
     reset();
   }
 
@@ -90,6 +90,12 @@ var updateWins = function () {
   document.querySelector("#wins").innerHTML = "Wins: " + wins;
 }
 
+//Function to display losses
+
+var updateLosses = function ()  {
+  document.querySelector("#losses").innerHTML = "Losses " + losses;
+}
+
 // Display user guesses so far
 
 var guessesSoFar = function () {
@@ -102,12 +108,9 @@ var guessesSoFar = function () {
 //Reset Function
 
 function reset()  {
-  wins= 0
-  losses= 0
   guessesLeft = 9
   userGuesses = [];
   compChoice();
-  updateWins();
 }
 
 
