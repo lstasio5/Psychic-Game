@@ -50,30 +50,37 @@ var userGuesses = [];
   console.log("userguesses",userGuess);
   console.log("globalGuess",globalGuess);
 
+
+  console.log("condition one",userGuess === globalGuess);
   if (userGuess === globalGuess) {
     wins++;
     console.log("wins",wins);
-    guessesLeft = 9;
     guessesSoFar();
     updateGuessesLeft();
     updateWins();
     //reset();
     
   }
-  else if (userGuess !== globalGuess) {
+
+  console.log("condition two",userGuess !== globalGuess);
+  if (userGuess !== globalGuess) {
+    //console.log("guesses left",guessesLeft--);
     guessesLeft--;
     guessesSoFar();
+    updateGuessesLeft();
   }
 
-  else if (guessesLeft == 0) {
+  console.log("condition three",guessesLeft == 0);
+  if (guessesLeft == 0) {
     losses++;
-    guessesLeft = 9;
+    reset();
   }
 
 
 }
 
 var updateGuessesLeft = function () {
+  //console.log("guessesleft",guessesLeft);
   document.querySelector("#guesses-left").innerHTML = "Guesses Left:" + guessesLeft;
 }
 
@@ -86,7 +93,9 @@ var updateWins = function () {
 // Display user guesses so far
 
 var guessesSoFar = function () {
+  console.log("guesses so far",userGuesses.join(', '));
   document.querySelector("#guesses-sofar").innerHTML = "Your Guesses so far:" + userGuesses.join(', ');
+  
 
 }
 
