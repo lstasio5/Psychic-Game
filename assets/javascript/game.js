@@ -101,7 +101,6 @@ var updateLosses = function ()  {
 var guessesSoFar = function () {
   console.log("guesses so far",userGuesses.join(', '));
   document.querySelector("#guesses-sofar").innerHTML = "Your Guesses so far:" + userGuesses.join(', ');
-  
 
 }
 
